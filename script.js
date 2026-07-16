@@ -217,9 +217,9 @@
 
   function generateFlowers() {
     const layers = [
-      { id: 'layer-back', cls: 'f-back', count: 24, baseSize: 18, blur: 6, op: 1 },
-      { id: 'layer-mid',  cls: 'f-mid',  count: 24, baseSize: 14, blur: 2, op: 1  },
-      { id: 'layer-front',cls: 'f-front',count: 24, baseSize: 10, blur: 0, op: 1 }
+      { id: 'layer-back', cls: 'f-back', count: 19, baseSize: 18, blur: 6, op: 1 },
+      { id: 'layer-mid',  cls: 'f-mid',  count: 19, baseSize: 14, blur: 2, op: 1  },
+      { id: 'layer-front',cls: 'f-front',count: 19, baseSize: 10, blur: 0, op: 1 }
     ];
 
     layers.forEach(function(layer) {
@@ -229,10 +229,10 @@
 
       // 8 left, 8 right
       var zones = [
-        { xRange: [0, 15],  yRange: [5, 95],  count: 8 },  // esquerda
-        { xRange: [85, 100], yRange: [5, 95],  count: 8 },  // direita
+        { xRange: [0, 12],  yRange: [5, 95],  count: 6 },  // esquerda
+        { xRange: [88, 100], yRange: [5, 95],  count: 6 },  // direita
         { xRange: [15, 85],  yRange: [0, 10],  count: 4 },  // topo
-        { xRange: [15, 85],  yRange: [90, 100], count: 4 }  // fundo
+        { xRange: [15, 85],  yRange: [90, 100], count: 3 }  // fundo
       ];
 
       var flowerIndex = 0;
@@ -331,7 +331,7 @@
     var petalContainer = document.getElementById('layer-petals');
     if (petalContainer) {
       petalContainer.innerHTML = '';
-      for (var p = 0; p < 10; p++) {
+      for (var p = 0; p < 8; p++) {
         var petal = document.createElement('img');
         var ptIdx = p % PETAL_TYPES.length;
         petal.src = 'flowers/' + PETAL_TYPES[ptIdx];
