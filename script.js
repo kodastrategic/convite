@@ -14,8 +14,8 @@
     'DE MARIAH VERLY.'
   ];
 
-  const FLOWER_TYPES = ['flor1.png', 'flor2.png', 'flor3.png'];
-  const PETAL_TYPES  = ['petala1.png', 'petala2.png', 'petala3.png'];
+  const FLOWER_TYPES = ['flor1.jpg', 'flor2.jpg', 'flor3.jpg'];
+  const PETAL_TYPES  = ['petala1.jpg', 'petala2.jpg', 'petala3.jpg'];
 
   let currentFrame = 0;
   let isDragging = false;

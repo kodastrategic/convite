@@ -196,7 +196,7 @@ html, body {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('logo/bg01.jpeg');
+  background-image: url('logo/bg01.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.5;
@@ -210,7 +210,7 @@ html, body {
   left: -7.5%;
   width: 115%;
   height: 115%;
-  background: url('logo/Frame01.png') center / cover no-repeat;
+  background: url('logo/Frame01.jpg') center / cover no-repeat;
   z-index: 3;
   pointer-events: none;
   animation: frame01Wiggle 16s ease-in-out infinite;
