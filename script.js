@@ -39,7 +39,7 @@
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const num = String(i).padStart(3, '0');
       const img = new Image();
-      img.src = 'frames/frame_' + num + '.jpg';
+      img.src = 'frames/frame_' + num + '.webp';
       img.onload = img.onerror = function() {
         if (loadedCount === 0 && callback) callback();
         loadedCount++;
@@ -62,7 +62,7 @@
     const clamped = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
     currentFrame = clamped;
     const num = String(clamped + 1).padStart(3, '0');
-    frameImg.src = 'frames/frame_' + num + '.jpg';
+    frameImg.src = 'frames/frame_' + num + '.webp';
     progressFill.style.width = ((clamped / (TOTAL_FRAMES - 1)) * 100) + '%';
   }
 
