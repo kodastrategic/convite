@@ -194,7 +194,7 @@
   function animateIntro() {
     const paragraphs = introText.querySelectorAll('p');
     let delay = 0;
-    const step = 350;
+    const step = 600;
 
     paragraphs.forEach(function(p) {
       setTimeout(function() {
@@ -203,7 +203,7 @@
       delay += step;
     });
 
-    var totalDuration = delay + 1200;
+    var totalDuration = delay + 2500;
 
     setTimeout(function() {
       stage2.classList.remove('active');
