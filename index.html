@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>15 Anos — Mariah Verly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&family=Kapakana:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div id="stage-1" class="stage active">
+    <div id="frame-container" class="frame-container">
+      <div id="frame-overlay" class="frame-overlay"></div>
+      <img id="frame-img" class="frame-img" src="frames/frame_001.jpg" alt="">
+    </div>
+    <div id="drag-btn" class="drag-btn">
+      <span class="drag-arrow">&#8593;</span>
+      <span>Arraste para cima</span>
+    </div>
+    <div id="progress-bar" class="progress-bar">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+  </div>
+
+  <div id="stage-2" class="stage">
+    <div id="intro-overlay" class="intro-overlay"></div>
+    <div id="intro-text" class="intro-text"></div>
+  </div>
+
+  <div id="stage-3" class="stage">
+
+    <div id="frame01-overlay" class="frame01-overlay"></div>
+
+    <div id="layer-glow" class="flower-layer layer-glow"></div>
+
+    <div id="layer-glow-screen" class="flower-layer layer-glow-screen"></div>
+
+    <div id="layer-back" class="flower-layer layer-back"></div>
+
+    <div id="layer-mid" class="flower-layer layer-mid"></div>
+
+    <div id="separator-layer" class="separator-layer"></div>
+
+    <div id="layer-front" class="flower-layer layer-front"></div>
+
+    <div id="layer-petals" class="flower-layer layer-petals"></div>
+
+    <div id="content-3" class="content-3">
+      <div class="invite-card">
+        <p class="invite-greeting">Voc&ecirc; &eacute; meu convidado(a)</p>
+        <img src="logo/logo01.png" alt="" class="invite-logo">
+        <p class="invite-date">04 de setembro &middot; 20h</p>
+        <p class="invite-phrase">&ldquo;Aos quinze anos, tudo &eacute; infinito&rdquo;<br><span class="invite-author">&mdash; Machado de Assis</span></p>
+        <div class="invite-buttons">
+          <button class="btn btn-dresscode" data-modal="dresscode-modal"><img src="logo/vestido.svg" alt="" width="20" height="20"> Dress Code</button>
+          <button class="btn btn-gifts" data-modal="gifts-modal"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> Presentes</button>
+          <button class="btn btn-map" data-modal="map-modal"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Local</button>
+          <button class="btn btn-confirm" data-modal="confirm-modal"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Confirmar Presen&ccedil;a</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="overlay" class="overlay"></div>
+
+  <div id="dresscode-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title"><img src="logo/vestido.svg" alt="" width="24" height="24" style="vertical-align:middle;margin-right:8px"> Dress Code</h2>
+      <p class="modal-body">Traje social &mdash; cores prata, roxo, azul e rosa s&atilde;o bem-vindas!</p>
+    </div>
+  </div>
+
+  <div id="gifts-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> Lista de Presentes</h2>
+      <p class="modal-body">Eletr&ocirc;nicos, perfumes, maquiagem, acess&oacute;rios, vale-presentes ou contribui&ccedil;&atilde;o para a festa via PIX.</p>
+    </div>
+  </div>
+
+  <div id="map-modal" class="modal">
+    <div class="modal-content modal-map">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Local</h2>
+      <div class="modal-map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.416977845241!2d-42.543559!3d-22.528222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDMxJzQxLjYiUyA0MsKwMzInMzcuNyJX!5e0!3m2!1spt-BR!2sbr!4v1"
+          width="100%"
+          height="300"
+          style="border:0;border-radius:12px;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <p class="modal-body">Av. Ant&ocirc;nio Mario de Azevedo, 1220 &middot; Duas Pedras<br>Nova Friburgo &middot; RJ</p>
+    </div>
+  </div>
+
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Confirmar Presen&ccedil;a</h2>
+      <label class="modal-label" for="guest-name">Confirme seu nome</label>
+      <input type="text" id="guest-name" class="modal-input" placeholder="Digite seu nome">
+      <button id="confirm-send" class="btn btn-confirm btn-confirm-send">Enviar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
