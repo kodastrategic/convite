@@ -47,13 +47,28 @@
     }
   }
 
+  var frameReady = false;
+  var timeReady = false;
+
+  function hideLoader() {
+    if (frameReady && timeReady) loader.classList.add('hidden');
+  }
+
   if (frameImg.complete) {
-    loader.classList.add('hidden');
+    frameReady = true;
+    hideLoader();
   } else {
     frameImg.addEventListener('load', function() {
-      loader.classList.add('hidden');
+      frameReady = true;
+      hideLoader();
     });
   }
+
+  setTimeout(function() {
+    timeReady = true;
+    hideLoader();
+  }, 5000);
+
   preloadFrames();
 
   /* ─── STAGE 1: DRAG FRAMES ─── */
