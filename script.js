@@ -515,7 +515,7 @@
           stage3.classList.add('active');
           generateFlowers();
           initFlowerAnimations();
-        }, 1400);
+        }, 3000);
       }
     }, 70);
   }

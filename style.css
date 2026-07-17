@@ -421,7 +421,7 @@ html, body {
 .invite-cta {
   font-family: var(--font-body);
   font-size: clamp(11px, 2.5vw, 14px);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.7);
   font-weight: 300;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -430,8 +430,8 @@ html, body {
 }
 
 @keyframes pulseCta {
-  0%, 100% { opacity: 0.35; }
-  50% { opacity: 0.7; }
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 .btn {
@@ -702,6 +702,14 @@ html, body {
   color: rgba(255,255,255,0.5);
   margin-top: 0.5rem;
   letter-spacing: 1px;
+}
+
+.pix-owner {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(11px, 2vw, 14px);
+  color: rgba(255,255,255,0.35);
+  margin-top: 0.15rem;
+  letter-spacing: 0.5px;
 }
 
 .modal-map-container {
