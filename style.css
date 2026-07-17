@@ -403,12 +403,14 @@ html, body {
   margin-bottom: 0.5rem;
 }
 
-.invite-address {
-  font-size: clamp(13px, 2.8vw, 16px);
-  color: var(--azul);
-  font-weight: 300;
-  line-height: 1.6;
-  margin-bottom: 0.8rem;
+.invite-time {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 7vw, 52px);
+  color: var(--prata);
+  font-weight: 400;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
 .invite-buttons {
