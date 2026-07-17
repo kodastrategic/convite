@@ -613,7 +613,9 @@ html, body {
 .machado-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #d4b8e0 0%, #e8d4f0 50%, #d4b8e0 100%);
+  background-image: url('logo/saa.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .machado-content {
@@ -629,19 +631,20 @@ html, body {
 }
 
 .machado-text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Kapakana', 'Playfair Display', serif;
   font-size: clamp(24px, 6vw, 52px);
-  color: #2d1b3d;
+  color: #fff;
   line-height: 1.4;
   font-weight: 400;
   min-height: 2em;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
 }
 
 .machado-text .cursor {
   display: inline-block;
   width: 2px;
   height: 1em;
-  background: #2d1b3d;
+  background: #fff;
   margin-left: 2px;
   animation: blink 0.8s step-end infinite;
   vertical-align: text-bottom;
@@ -655,12 +658,13 @@ html, body {
 .machado-author {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(14px, 3vw, 24px);
-  color: #4a2a5a;
+  color: #fff;
   font-weight: 300;
   font-style: italic;
   margin-top: 1rem;
   opacity: 0;
   transition: opacity 1s ease;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .machado-author.visible {
