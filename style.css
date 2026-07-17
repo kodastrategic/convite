@@ -76,12 +76,7 @@ html, body {
   width: 0%;
   background: linear-gradient(90deg, var(--roxo), var(--rosa));
   border-radius: 2px;
-  animation: loadBar 5s ease-in-out forwards;
-}
-
-@keyframes loadBar {
-  0% { width: 0%; }
-  100% { width: 100%; }
+  transition: width 0.3s ease;
 }
 
 .stage {
@@ -103,6 +98,7 @@ html, body {
   position: absolute;
   inset: 0;
   background: var(--bg-dark);
+  touch-action: none;
 }
 
 .frame-img {
@@ -398,25 +394,8 @@ html, body {
   margin-bottom: 0.5rem;
 }
 
-.invite-phrase {
-  font-family: var(--font-title);
-  font-size: clamp(16px, 3.5vw, 24px);
-  font-style: italic;
-  color: var(--prata);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.invite-author {
-  font-family: var(--font-body);
-  font-size: clamp(14px, 2.8vw, 20px);
-  font-style: normal;
-  color: var(--rosa);
-  letter-spacing: 1px;
-}
-
 .invite-date {
-  font-family: 'Kapakana', cursive;
+  font-family: 'Playfair Display', serif;
   font-size: clamp(32px, 7.5vw, 52px);
   color: var(--rosa);
   font-weight: 400;
@@ -623,6 +602,106 @@ html, body {
   width: 100%;
   padding: 14px;
   font-size: clamp(16px, 3.5vw, 20px);
+}
+
+/* ─── STAGE MACHADO ─── */
+
+#stage-machado {
+  background: #d4b8e0;
+}
+
+.machado-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #d4b8e0 0%, #e8d4f0 50%, #d4b8e0 100%);
+}
+
+.machado-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  z-index: 2;
+}
+
+.machado-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 6vw, 52px);
+  color: #2d1b3d;
+  line-height: 1.4;
+  font-weight: 400;
+  min-height: 2em;
+}
+
+.machado-text .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #2d1b3d;
+  margin-left: 2px;
+  animation: blink 0.8s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.machado-author {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(14px, 3vw, 24px);
+  color: #4a2a5a;
+  font-weight: 300;
+  font-style: italic;
+  margin-top: 1rem;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.machado-author.visible {
+  opacity: 1;
+}
+
+/* ─── PIX ─── */
+
+.pix-area {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.btn-pix {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #28a745, #34d058);
+  border-color: transparent;
+  font-weight: 600;
+  font-size: clamp(14px, 3vw, 17px);
+  padding: 12px 24px;
+}
+
+.btn-pix:hover, .btn-pix:active {
+  background: linear-gradient(135deg, #34d058, #28a745);
+  box-shadow: 0 6px 24px rgba(40, 167, 69, 0.35);
+  border-color: transparent;
+}
+
+.btn-pix.copied {
+  background: linear-gradient(135deg, #1e7e34, #28a745);
+  pointer-events: none;
+}
+
+.pix-key {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(12px, 2.5vw, 16px);
+  color: rgba(255,255,255,0.5);
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
 }
 
 .modal-map-container {

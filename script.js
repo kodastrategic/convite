@@ -25,6 +25,8 @@
   const stage1 = document.getElementById('stage-1');
   const stage2 = document.getElementById('stage-2');
   const stage3 = document.getElementById('stage-3');
+  const stageMachado = document.getElementById('stage-machado');
+  const loaderFill = document.querySelector('.loader-fill');
   const frameImg = document.getElementById('frame-img');
   const dragBtn = document.getElementById('drag-btn');
   const progressFill = document.getElementById('progress-fill');
@@ -33,43 +35,44 @@
 
   /* ─── PRÉ-CARREGAMENTO ─── */
 
-  let loadedCount = 0;
+  let preloadedCount = 0;
+  let loaderMinShown = false;
 
-  function preloadFrames(callback) {
+  function preloadAllFrames() {
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const num = String(i).padStart(3, '0');
       const img = new Image();
       img.src = 'frames/frame_' + num + '.webp';
       img.onload = img.onerror = function() {
-        if (loadedCount === 0 && callback) callback();
-        loadedCount++;
+        preloadedCount++;
+        updateLoaderProgress();
+        tryHideLoader();
       };
     }
   }
 
-  var frameReady = false;
-  var timeReady = false;
-
-  function hideLoader() {
-    if (frameReady && timeReady) loader.classList.add('hidden');
+  function updateLoaderProgress() {
+    if (!loaderFill) return;
+    const pct = Math.min(100, (preloadedCount / TOTAL_FRAMES) * 100);
+    loaderFill.style.width = pct + '%';
   }
 
-  if (frameImg.complete) {
-    frameReady = true;
-    hideLoader();
-  } else {
-    frameImg.addEventListener('load', function() {
-      frameReady = true;
-      hideLoader();
-    });
+  function tryHideLoader() {
+    if (preloadedCount >= TOTAL_FRAMES) {
+      loader.classList.add('hidden');
+      return;
+    }
+    if (preloadedCount >= 3 && loaderMinShown) {
+      loader.classList.add('hidden');
+    }
   }
 
   setTimeout(function() {
-    timeReady = true;
-    hideLoader();
-  }, 5000);
+    loaderMinShown = true;
+    tryHideLoader();
+  }, 2000);
 
-  preloadFrames();
+  preloadAllFrames();
 
   /* ─── STAGE 1: DRAG FRAMES ─── */
 
@@ -134,14 +137,14 @@
   }
 
   var musicStarted = false;
+  var bgMusic = new Audio('musica/music.mp3');
+  bgMusic.loop = true;
+  bgMusic.volume = 0.4;
 
   function startMusic() {
     if (musicStarted) return;
     musicStarted = true;
-    var a = new Audio('musica/music.mp3');
-    a.loop = true;
-    a.volume = 0.4;
-    a.play().catch(function(){});
+    bgMusic.play().catch(function(){});
   }
 
   document.addEventListener('touchstart', function(e) {
@@ -194,7 +197,7 @@
   function animateIntro() {
     const paragraphs = introText.querySelectorAll('p');
     let delay = 0;
-    const step = 600;
+    const step = 700;
 
     paragraphs.forEach(function(p) {
       setTimeout(function() {
@@ -203,13 +206,12 @@
       delay += step;
     });
 
-    var totalDuration = delay + 2500;
+    var totalDuration = delay + 4000;
 
     setTimeout(function() {
       stage2.classList.remove('active');
-      stage3.classList.add('active');
-      generateFlowers();
-      initFlowerAnimations();
+      stageMachado.classList.add('active');
+      startMachadoTypewriter();
     }, totalDuration);
   }
 
@@ -480,6 +482,64 @@
   if (guestName) {
     guestName.addEventListener('keydown', function(e) {
       if (e.key === 'Enter') sendWhatsApp();
+    });
+  }
+
+  /* ─── STAGE MACHADO: TYPEWRITER ─── */
+
+  function startMachadoTypewriter() {
+    var text = 'Aos quinze anos, tudo é infinito';
+    var author = '— Machado de Assis (Dom Casmurro)';
+    var textEl = document.querySelector('.machado-text');
+    var authorEl = document.querySelector('.machado-author');
+    if (!textEl || !authorEl) return;
+
+    textEl.innerHTML = '';
+    authorEl.textContent = '';
+    authorEl.classList.remove('visible');
+
+    var idx = 0;
+    var typeTimer = setInterval(function() {
+      if (idx < text.length) {
+        textEl.textContent = text.substring(0, idx + 1);
+        idx++;
+      } else {
+        clearInterval(typeTimer);
+        textEl.innerHTML = text + '<span class="cursor"></span>';
+        setTimeout(function() {
+          authorEl.textContent = author;
+          authorEl.classList.add('visible');
+        }, 300);
+        setTimeout(function() {
+          stageMachado.classList.remove('active');
+          stage3.classList.add('active');
+          generateFlowers();
+          initFlowerAnimations();
+        }, 1400);
+      }
+    }, 70);
+  }
+
+  /* ─── COPIAR PIX ─── */
+
+  var btnPix = document.getElementById('btn-copy-pix');
+  var pixLabel = document.getElementById('pix-label');
+
+  if (btnPix) {
+    btnPix.addEventListener('click', function() {
+      navigator.clipboard.writeText('22 99863-9050').then(function() {
+        pixLabel.textContent = 'Copiado!';
+        btnPix.classList.add('copied');
+        setTimeout(function() {
+          pixLabel.textContent = 'Copiar chave PIX';
+          btnPix.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        pixLabel.textContent = 'Erro ao copiar';
+        setTimeout(function() {
+          pixLabel.textContent = 'Copiar chave PIX';
+        }, 2000);
+      });
     });
   }
 
