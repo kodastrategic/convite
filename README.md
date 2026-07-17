@@ -6,11 +6,12 @@ Convite online interativo para aniversário de 15 anos de Mariah Verly.
 
 ---
 
-## Fluxo do Site (4 Etapas)
+## Fluxo do Site (5 Etapas)
 
-### Loader — Aguarde...
-- Tela inicial com barra de progresso animada (5s) e texto "Aguarde..."
-- Só desaparece quando os 5s passam **E** o primeiro frame carrega
+### Loader — Aguarde... (~2s)
+- Tela inicial com barra de progresso baseada no **carregamento real dos frames**
+- Desaparece após 2s (mínimo) **ou** quando todos os frames carregam
+- Música ambiente inicia na primeira interação (touch/click)
 
 ### Etapa 1 — Abrindo a Caixa de Presente
 - 45 frames da caixa se abrindo (`frame_001.webp` a `frame_045.webp`)
@@ -20,10 +21,10 @@ Convite online interativo para aniversário de 15 anos de Mariah Verly.
 - Se soltar **do frame 36 em diante**: animação continua automaticamente até o final
 - Checkpoint no frame 36
 
-### Etapa 2 — Introdução Poética (~7s)
+### Etapa 2 — Introdução Poética (~9.6s)
 - Fundo: `logo/saa.jpg`
-- Texto em Playfair Display, linhas aparecendo uma a uma com fade-in (600ms entre cada)
-- Pausa final de 2.5s antes de transicionar para o convite
+- Texto em Playfair Display, linhas aparecendo uma a uma com fade-in (700ms entre cada)
+- Pausa final de 4s antes de transicionar para a tela Machado
 
 ```
 SOB O BRILHO DAS LUZES
@@ -37,13 +38,20 @@ OS 15 ANOS
 DE MARIAH VERLY.
 ```
 
+### Etapa 2.5 — Tela Machado de Assis (~5.3s)
+- Fundo: `logo/saa.jpg`
+- Texto "Aos quinze anos, tudo é infinito" aparecendo **letra por letra** (typewriter)
+- Fonte Kapakana, cor branca com text-shadow
+- Autor "— Machado de Assis (Dom Casmurro)" fadea após a digitação
+- Transiciona automaticamente para o convite
+
 ### Etapa 3 — Convite Principal
 - Card central com:
   - "Você é meu convidado(a)" (destaque)
   - Logo
-  - Data: 04 de setembro · 20h (fonte Kapakana)
-  - "Aos quinze anos, tudo é infinito" — Machado de Assis
-  - "clique nos ícones e veja" (CTA sutil)
+  - Data: **04 de setembro** (Kapakana, rosa)
+  - Horário: **20h** (Playfair Display, prata, abaixo da data)
+  - "clique nos ícones e veja" (CTA visível, opacidade 0.7)
 - Fundo decorado com:
   - `logo/Frame01.webp` com wiggle sutil (16s, ±0.5°)
   - 3 camadas de flores (19 flores cada) dispostas em moldura nas bordas
@@ -51,27 +59,28 @@ DE MARIAH VERLY.
   - Glows com `radial-gradient` + `mix-blend-mode: screen`
   - 8 pétalas caindo com trajetórias únicas (keyframes individuais)
 - Botões: Dress Code, Presentes, Local (Maps), Confirmar Presença
-- **Confirmar Presença:** Modal com input de nome → redireciona para WhatsApp com o nome na mensagem
+  - **Dress Code:** Traje social — não usar roxa, lilás ou prata
+  - **Presentes:** Sugestões + botão **Copiar chave PIX** (22 99863-9050 — Mariah Verly Teixeira)
+  - **Local:** Google Maps embutido com endereço
+  - **Confirmar Presença:** Modal com input de nome → redireciona para WhatsApp
 
 ---
 
 ## Performance e Otimização
 
-### Imagens → WebP Lossless
-Todas as imagens foram convertidas para WebP com transparência preservada e resolução reduzida em ~28%:
+### Imagens → WebP + Redução de 20%
+Todas as imagens convertidas para WebP e posteriormente tiveram a resolução reduzida em 20% via Python/Pillow:
 
-| Item | Antes | Depois |
-|---|---|---|
-| 45 frames | ~75 MB (JPEG) | **~3.9 MB** (WebP) |
-| Flores + pétalas | ~19 MB (PNG) | **~0.3 MB** (WebP) |
-| Frame01 + logo | ~6 MB (PNG) | **~0.2 MB** (WebP) |
-| Backgrounds | ~10 MB (JPEG) | **~1.8 MB** (JPEG) |
-| glow01.png (não usado) | 14 MB | **removido** |
-| Música | 9.3 MB | **2.8 MB** (96kbps) |
-| **Total** | **~130 MB** | **~9 MB** |
+| Item | Tamanho |
+|---|---|
+| 45 frames | ~3.7 MB (829x1796, WebP) |
+| Flores + pétalas | ~167 KB (WebP) |
+| Frame01 + background | ~138 KB (WebP/JPG) |
+| **Total imagens** | **~4 MB** |
 
 ### Música
 - `musica/music.mp3` em looping, volume 40%
+- Criada como singleton (uma única instância do Audio)
 - Inicia na primeira interação do usuário (touch/click)
 
 ---
@@ -114,7 +123,7 @@ Todas as imagens foram convertidas para WebP com transparência preservada e res
 
 - HTML5 + CSS3 + JavaScript (vanilla, zero dependências)
 - Google Fonts: Playfair Display, Montserrat, Kapakana
-- WebP lossless para imagens com transparência
+- WebP para imagens com compressão eficiente
 - Hospedagem: Vercel (deploy automático via GitHub)
 
 ---
@@ -149,3 +158,17 @@ Todas as imagens foram convertidas para WebP com transparência preservada e res
 - Projeto total: ~130 MB → ~9 MB
 - CTA "clique nos ícones e veja" adicionado
 - Tempo da intro poética aumentado (step 350→600ms)
+
+### Sessão 4 — Performance mobile + telas extras
+- **Loader:** Substituído por progresso real (preloading corrigido), desaparece em ~2s
+- **Áudio:** Singleton (criado uma única vez, sem recriação a cada toque)
+- **Intro poética:** step 600ms → 700ms, pausa final 2500ms → 4000ms
+- **Nova tela Machado:** Typewriter letra por letra, fundo `saa.jpg`, texto branco (Kapakana, 36-76px), autor com fade
+- **Frase do card removida:** "Aos quinze anos, tudo é infinito" movida para tela exclusiva
+- **Fonte Kapakana:** Removida e readicionada ao Google Fonts (usada na tela Machado)
+- **CSS:** Loader sem animação fixa, `touch-action: none` no drag, estilos Machado e PIX
+- **Modal Presentes:** Sugestões atualizadas + botão copiar PIX com feedback "Copiado!"
+- **Modal Dress Code:** Restrição de cores (não usar roxa, lilás ou prata)
+- **CTA "clique nos ícones":** Opacidade 0.35 → 0.7 (mais visível)
+- **Data/horário:** Separados em duas linhas (data + 20h), sem ponto médio
+- **Imagens:** Resolução reduzida em 20% via Python/Pillow (LANCZOS, quality 85) — exceto `logo01.webp`
