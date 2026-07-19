@@ -136,15 +136,10 @@
     }
   }
 
-  var musicStarted = false;
-  var bgMusic = new Audio('musica/music.mp3');
-  bgMusic.loop = true;
-  bgMusic.volume = 0.4;
+  var bgMusic = document.getElementById('musica');
 
   function startMusic() {
-    if (musicStarted) return;
-    musicStarted = true;
-    bgMusic.play().catch(function(){});
+    try { bgMusic.play(); } catch(e) {}
   }
 
   document.addEventListener('touchstart', function(e) {
