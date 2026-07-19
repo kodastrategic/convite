@@ -172,3 +172,12 @@ Todas as imagens convertidas para WebP e posteriormente tiveram a resolução re
 - **CTA "clique nos ícones":** Opacidade 0.35 → 0.7 (mais visível)
 - **Data/horário:** Separados em duas linhas (data + 20h), sem ponto médio
 - **Imagens:** Resolução reduzida em 20% via Python/Pillow (LANCZOS, quality 85) — exceto `logo01.webp`
+
+### Sessão 5 — Ajustes de texto, estilo e performance
+- **Dress Code:** "Para se manter" → "Para manter" (removido conectivo)
+- **Presentes:** "sua presença" → "Sua presença" (S maiúsculo)
+- **Horário:** Removido `text-transform: uppercase` do CSS (20h com h minúsculo)
+- **Tela Machado:** Texto do autor sem travessão, "em" no lugar de parênteses, *Dom Casmurro* em itálico (via `<em>`), `font-style: italic` removido do container
+- **Fonte Machado:** Aumentada (clamp 59px-14vw-120px), line-height reduzido para 1.0
+- **Duração Machado:** 3s → 5s → 4s + transição suave (crossfade 0.8s)
+- **Performance:** Geração das flores antecipada para o início da tela Machado (~7s antes do fade-in), evitando travamento na stage 3
