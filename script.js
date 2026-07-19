@@ -177,7 +177,6 @@
 
     buildIntroText();
     animateIntro();
-    preloadFlowerAssets();
   }
 
   function buildIntroText() {
@@ -214,16 +213,6 @@
       stageMachado.classList.add('active');
       startMachadoTypewriter();
     }, totalDuration);
-  }
-
-  /* ─── PRÉ-CARREGAMENTO DAS FLORES ─── */
-
-  function preloadFlowerAssets() {
-    var srcs = [];
-    FLOWER_TYPES.forEach(function(f) { srcs.push('flowers/' + f); });
-    PETAL_TYPES.forEach(function(p) { srcs.push('flowers/' + p); });
-    srcs.push('logo/Frame01.webp', 'logo/bg01.jpg', 'logo/logo01.webp');
-    srcs.forEach(function(src) { var img = new Image(); img.src = src; });
   }
 
   /* ─── STAGE 3: GERAR FLORES ─── */
