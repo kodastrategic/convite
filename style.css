@@ -409,7 +409,6 @@ html, body {
   color: var(--prata);
   font-weight: 400;
   letter-spacing: 6px;
-  text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
 
@@ -634,9 +633,9 @@ html, body {
 
 .machado-text {
   font-family: 'Kapakana', 'Playfair Display', serif;
-  font-size: clamp(36px, 9vw, 76px);
+  font-size: clamp(59px, 14vw, 120px);
   color: #fff;
-  line-height: 1.4;
+  line-height: 1.0;
   font-weight: 400;
   min-height: 2em;
   text-shadow: 0 2px 12px rgba(0,0,0,0.5);
@@ -662,7 +661,6 @@ html, body {
   font-size: clamp(18px, 3.5vw, 30px);
   color: #fff;
   font-weight: 300;
-  font-style: italic;
   margin-top: 1rem;
   opacity: 0;
   transition: opacity 1s ease;

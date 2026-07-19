@@ -489,7 +489,7 @@
 
   function startMachadoTypewriter() {
     var text = 'Aos quinze anos, tudo é infinito';
-    var author = '— Machado de Assis (Dom Casmurro)';
+    var author = 'Machado de Assis em <em>Dom Casmurro</em>';
     var textEl = document.querySelector('.machado-text');
     var authorEl = document.querySelector('.machado-author');
     if (!textEl || !authorEl) return;
@@ -507,15 +507,17 @@
         clearInterval(typeTimer);
         textEl.innerHTML = text + '<span class="cursor"></span>';
         setTimeout(function() {
-          authorEl.textContent = author;
+          authorEl.innerHTML = author;
           authorEl.classList.add('visible');
         }, 300);
         setTimeout(function() {
           stageMachado.classList.remove('active');
           stage3.classList.add('active');
-          generateFlowers();
-          initFlowerAnimations();
-        }, 3000);
+          setTimeout(function() {
+            generateFlowers();
+            initFlowerAnimations();
+          }, 500);
+        }, 5000);
       }
     }, 70);
   }
