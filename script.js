@@ -104,7 +104,7 @@
     }
   }
 
-  const CHECKPOINT = 36;
+  const CHECKPOINT = 20;
 
   function onDragEnd() {
     isDragging = false;
