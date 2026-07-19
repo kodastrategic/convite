@@ -724,6 +724,12 @@ html, body {
 /* ─── RESPONSIVO ─── */
 
 @media (max-width: 600px) {
+  .open-btn {
+    padding: 12px 24px;
+    font-size: clamp(13px, 3.5vw, 16px);
+    letter-spacing: 2px;
+    bottom: 8%;
+  }
   .layer-back .flower,
   .layer-mid .flower,
   .layer-front .flower {
