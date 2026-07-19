@@ -211,6 +211,8 @@
     setTimeout(function() {
       stage2.classList.remove('active');
       stageMachado.classList.add('active');
+      generateFlowers();
+      initFlowerAnimations();
       startMachadoTypewriter();
     }, totalDuration);
   }
@@ -513,11 +515,7 @@
         setTimeout(function() {
           stageMachado.classList.remove('active');
           stage3.classList.add('active');
-          setTimeout(function() {
-            generateFlowers();
-            initFlowerAnimations();
-          }, 500);
-        }, 5000);
+        }, 4000);
       }
     }, 70);
   }
