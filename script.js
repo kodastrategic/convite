@@ -453,7 +453,9 @@
         }, 300);
         setTimeout(function() {
           stageMachado.classList.remove('active');
-          stage3.classList.add('active');
+          setTimeout(function() {
+            stage3.classList.add('active');
+          }, 100);
         }, 4000);
       }
     }, 70);

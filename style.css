@@ -607,7 +607,7 @@ html, body {
 /* ─── STAGE MACHADO ─── */
 
 #stage-machado {
-  background: #d4b8e0;
+  background: var(--bg-dark);
 }
 
 .machado-bg {
