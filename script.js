@@ -18,8 +18,6 @@
   const PETAL_TYPES  = ['petala1.webp', 'petala2.webp', 'petala3.webp'];
 
   let currentFrame = 0;
-  let isDragging = false;
-  let startY = 0;
 
   const loader = document.getElementById('loader');
   const stage1 = document.getElementById('stage-1');
@@ -28,7 +26,7 @@
   const stageMachado = document.getElementById('stage-machado');
   const loaderFill = document.querySelector('.loader-fill');
   const frameImg = document.getElementById('frame-img');
-  const dragBtn = document.getElementById('drag-btn');
+  const openBtn = document.getElementById('open-btn');
   const progressFill = document.getElementById('progress-fill');
   const introText = document.getElementById('intro-text');
   const overlay = document.getElementById('overlay');
@@ -74,7 +72,7 @@
 
   preloadAllFrames();
 
-  /* ─── STAGE 1: DRAG FRAMES ─── */
+  /* ─── STAGE 1: AUTO-PLAY FRAMES ─── */
 
   function setFrame(index) {
     const clamped = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
@@ -84,55 +82,13 @@
     progressFill.style.width = ((clamped / (TOTAL_FRAMES - 1)) * 100) + '%';
   }
 
-  function onDragStart(clientY) {
-    isDragging = true;
-    startY = clientY;
-    dragBtn.style.opacity = '0';
-  }
-
-  function onDragMove(clientY) {
-    if (!isDragging) return;
-    const delta = startY - clientY;
-    if (delta <= 0) return;
-    const frameAdvance = Math.floor((delta / window.innerHeight) * TOTAL_FRAMES);
-    setFrame(frameAdvance);
-
-    if (currentFrame >= TOTAL_FRAMES - 1) {
-      isDragging = false;
-      dragBtn.style.display = 'none';
-      showStage2();
-    }
-  }
-
-  const CHECKPOINT = 20;
-
-  function onDragEnd() {
-    isDragging = false;
-    if (currentFrame >= TOTAL_FRAMES - 1) return;
-
-    if (currentFrame >= CHECKPOINT) {
-      dragBtn.style.display = 'none';
-      animateForward();
-    } else {
-      animateBack();
-    }
-  }
-
-  function animateForward() {
+  function playFrames() {
     if (currentFrame < TOTAL_FRAMES - 1) {
       setFrame(currentFrame + 1);
-      requestAnimationFrame(animateForward);
+      requestAnimationFrame(playFrames);
     } else {
+      openBtn.style.display = 'none';
       showStage2();
-    }
-  }
-
-  function animateBack() {
-    if (currentFrame > 0) {
-      setFrame(currentFrame - 1);
-      requestAnimationFrame(animateBack);
-    } else {
-      dragBtn.style.opacity = '1';
     }
   }
 
@@ -142,27 +98,15 @@
     try { bgMusic.play(); } catch(e) {}
   }
 
-  document.addEventListener('touchstart', function(e) {
-    startMusic();
-    onDragStart(e.touches[0].clientY);
-  }, { passive: true });
-
-  document.addEventListener('touchmove', function(e) {
-    onDragMove(e.touches[0].clientY);
-  }, { passive: true });
-
-  document.addEventListener('touchend', onDragEnd, { passive: true });
-
-  document.addEventListener('mousedown', function(e) {
-    startMusic();
-    onDragStart(e.clientY);
-  });
-
-  document.addEventListener('mousemove', function(e) {
-    onDragMove(e.clientY);
-  });
-
-  document.addEventListener('mouseup', onDragEnd);
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+      openBtn.style.display = 'none';
+      startMusic();
+      currentFrame = 0;
+      setFrame(0);
+      playFrames();
+    });
+  }
 
   /* ─── STAGE 2: INTRO ANIMATION ─── */
 
