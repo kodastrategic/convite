@@ -101,10 +101,16 @@ html, body {
   overflow: hidden;
 }
 
-.frame-video {
+.video-wrapper {
   width: 100%;
   height: auto;
   aspect-ratio: 720 / 1558;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   pointer-events: none;
 }
