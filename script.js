@@ -1,7 +1,6 @@
 (function() {
   'use strict';
 
-  const TOTAL_FRAMES = 45;
   const INTRO_LINES = [
     'SOB O BRILHO DAS LUZES',
     'E O ENCANTO DO GLITTER,',
@@ -17,80 +16,26 @@
   const FLOWER_TYPES = ['flor1.webp', 'flor2.webp', 'flor3.webp'];
   const PETAL_TYPES  = ['petala1.webp', 'petala2.webp', 'petala3.webp'];
 
-  let currentFrame = 0;
-
   const loader = document.getElementById('loader');
   const stage1 = document.getElementById('stage-1');
   const stage2 = document.getElementById('stage-2');
   const stage3 = document.getElementById('stage-3');
   const stageMachado = document.getElementById('stage-machado');
-  const loaderFill = document.querySelector('.loader-fill');
-  const frameImg = document.getElementById('frame-img');
+  const frameVideo = document.getElementById('frame-video');
   const openBtn = document.getElementById('open-btn');
-  const progressFill = document.getElementById('progress-fill');
   const introText = document.getElementById('intro-text');
   const overlay = document.getElementById('overlay');
 
-  /* ─── PRÉ-CARREGAMENTO ─── */
-
-  let preloadedCount = 0;
-  let loaderMinShown = false;
-
-  function preloadAllFrames() {
-    for (let i = 1; i <= TOTAL_FRAMES; i++) {
-      const num = String(i).padStart(3, '0');
-      const img = new Image();
-      img.src = 'frames/frame_' + num + '.webp';
-      img.onload = img.onerror = function() {
-        preloadedCount++;
-        updateLoaderProgress();
-        tryHideLoader();
-      };
-    }
-  }
-
-  function updateLoaderProgress() {
-    if (!loaderFill) return;
-    const pct = Math.min(100, (preloadedCount / TOTAL_FRAMES) * 100);
-    loaderFill.style.width = pct + '%';
-  }
-
-  function tryHideLoader() {
-    if (preloadedCount >= TOTAL_FRAMES) {
-      loader.classList.add('hidden');
-      return;
-    }
-    if (preloadedCount >= 3 && loaderMinShown) {
-      loader.classList.add('hidden');
-    }
-  }
+  /* ─── LOADER ─── */
 
   setTimeout(function() {
-    loaderMinShown = true;
-    tryHideLoader();
+    loader.classList.add('hidden');
   }, 2000);
 
-  preloadAllFrames();
+  frameVideo.src = 'video/0716(6).mp4';
+  frameVideo.load();
 
-  /* ─── STAGE 1: AUTO-PLAY FRAMES ─── */
-
-  function setFrame(index) {
-    const clamped = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
-    currentFrame = clamped;
-    const num = String(clamped + 1).padStart(3, '0');
-    frameImg.src = 'frames/frame_' + num + '.webp';
-    progressFill.style.width = ((clamped / (TOTAL_FRAMES - 1)) * 100) + '%';
-  }
-
-  function playFrames() {
-    if (currentFrame < TOTAL_FRAMES - 1) {
-      setFrame(currentFrame + 1);
-      requestAnimationFrame(playFrames);
-    } else {
-      openBtn.style.display = 'none';
-      showStage2();
-    }
-  }
+  /* ─── STAGE 1: VÍDEO ─── */
 
   var bgMusic = document.getElementById('musica');
 
@@ -102,11 +47,13 @@
     openBtn.addEventListener('click', function() {
       openBtn.style.display = 'none';
       startMusic();
-      currentFrame = 0;
-      setFrame(0);
-      playFrames();
+      frameVideo.play();
     });
   }
+
+  frameVideo.addEventListener('ended', function() {
+    showStage2();
+  });
 
   /* ─── STAGE 2: INTRO ANIMATION ─── */
 
