@@ -1,4 +1,4 @@
-# Convite 15 Anos — Mariah Verly
+﻿# Convite 15 Anos — Mariah Verly
 
 Convite online interativo para aniversário de 15 anos de Mariah Verly.
 
@@ -181,3 +181,12 @@ Todas as imagens convertidas para WebP e posteriormente tiveram a resolução re
 - **Fonte Machado:** Aumentada (clamp 59px-14vw-120px), line-height reduzido para 1.0
 - **Duração Machado:** 3s → 5s → 4s + transição suave (crossfade 0.8s)
 - **Performance:** Geração das flores antecipada para o início da tela Machado (~7s antes do fade-in), evitando travamento na stage 3
+
+
+### Sessão 6 — Vídeo, botão e áudio multiplataforma
+- **Drag removido:** Substituído por botão [Clique para abrir] com estilo vidro fosco
+- **Frames -> Vídeo:** 45 imagens WebP substituídas por vídeo MP4 (720x1558) com suporte a hardware GPU
+- **Vídeo adaptativo:** Wrapper div com aspect-ratio + object-fit cover para preencher largura da tela sem distorcer
+- **Loader simplificado:** 2s fixos (sem dependência de contagem de frames)
+- **Áudio:** Tag audio no HTML com preload auto + try/catch no play (compatível Android/iOS)
+- **Progresso:** Barra de progresso removida
